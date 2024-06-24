@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.MovieCard {
+    height: calc(100vh - 60px);
+    overflow: auto;
+    scrollbar-width: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.MovieCard-items {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 180px;
+    align-items: center;
+    flex-direction: column;
+    height: 280px;
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 0px 0px 10px rgb(12, 12, 12, 0.5);
+    row-gap: 5px;
+}
+
+.MovieCard-poster {
+    height: 160px;
+    width: 160px;
+}
+
+.MovieCard-sort-details {
+    width: 150px;
+    height: calc(300px - 150px);
+}
+
+.D {
+    width: 150px;
+}
+
+
+
+@media screen and (max-width: 417px) {
+    .MovieCard-poster {
+        height: 170px;
+        width: 250px;
+    }
+
+    .title{
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .MovieCard-poster {
+        height: 180px;
+        width: 270px;
+    }
+
+    .MovieCard-items {
+        height: 300px;
+    }
+
+    .MovieCard {
+        height: calc(100vh - 70px);
+    }
+}

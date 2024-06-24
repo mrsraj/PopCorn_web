@@ -1,0 +1,16 @@
+.NavContainer {
+    display: flex;
+    justify-content: space-between;
+    background-color: aquamarine;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.logo {
+    padding: 0px;
+    margin: 0px;
+    color: rgb(92, 55, 10);
+    text-shadow: 0px 0px 5px rgb(10, 10, 10, 0.5);
+    float: left;
+}
