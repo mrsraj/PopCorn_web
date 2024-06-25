@@ -1,24 +1,21 @@
-import './App.css'
-import NavContainer from './NavBar/NavContainer'
-import Api_Fetch from './API_Fetch.jsx'
 import { useState } from 'react';
+import './App.css'
+import NavContainer from './NavBar/NavContainer.jsx';
+import MovieCard from './movieCard/movieCard.jsx'
 
 function App() {
-  const [data1, setData1] = useState(null);
-  const [search, setSearch] = useState();
 
-  function SearchData(SearchData) {
-    setSearch(SearchData);
-  }
+  const [movieList, setmovieList] = useState([]);
 
-  function SearchCount(data) {
-    setData1(data.length);
+  function updateMovieList(info) {
+    console.log("new info in app file: " , info);
+    setmovieList(info);
   }
 
   return (
     <>
-      <NavContainer data={data1} SearchFun={SearchData}/>
-      <Api_Fetch SearchCount={SearchCount} SearchData={search} />
+      <NavContainer updateAppMovieList={updateMovieList} />
+      <MovieCard movieList={movieList} />
     </>
   )
 }

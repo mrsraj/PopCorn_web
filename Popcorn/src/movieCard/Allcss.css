@@ -23,6 +23,7 @@
     padding: 5px;
     box-shadow: 0px 0px 10px rgb(12, 12, 12, 0.5);
     row-gap: 5px;
+    cursor: pointer;
 }
 
 .MovieCard-poster {
@@ -35,8 +36,14 @@
     height: calc(300px - 150px);
 }
 
-.D {
-    width: 150px;
+
+.movielistloader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+
 }
 
 

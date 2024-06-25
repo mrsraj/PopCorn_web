@@ -2,24 +2,26 @@
 import './Allcss.css'
 import React from 'react';
 
-function MovieCard({ data }) {
+function MovieCard({ movieList }) {
 
-    if (!Array.isArray(data)) {
-        return (
-            <>
-                <div>Loading...</div>
-                <div>{typeof data}</div>
-            </>
-        );
+    if (movieList.length == 0 || movieList =="null") {
+        return <Loader />
     }
-    else if (data.length === 0) {
-        return <div>No movies available</div>;
+
+    //console.log("Movie dataForCard = ", dataForCard.length);
+
+    function Loader() {
+        return <div className='movielistloader'><h2>Loading..</h2></div>
+    }
+
+    function HandleCardDetails(ID) {
+        alert(ID);
     }
 
     return (
         <div className="MovieCard">
-            {data.map((movie, index) => (
-                <div key={index} className='MovieCard-items'>
+            {movieList.map((movie, index) => (
+                <div key={index} className='MovieCard-items' onClick={() => { HandleCardDetails(movie.imdbID) }}>
 
                     <div >
                         <img className='MovieCard-poster' src={movie.Poster} alt={`${movie.Title} Poster`} />
