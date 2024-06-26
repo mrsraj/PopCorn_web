@@ -4,6 +4,8 @@ import React from 'react';
 
 function MovieCard({ movieList }) {
 
+    console.log("movieList = ", movieList);
+
     if (movieList.length == 0 || movieList =="null") {
         return <Loader />
     }
@@ -11,7 +13,7 @@ function MovieCard({ movieList }) {
     //console.log("Movie dataForCard = ", dataForCard.length);
 
     function Loader() {
-        return <div className='movielistloader'><h2>Loading..</h2></div>
+        return <div className='movielistloader'><h2>Loading...</h2></div>
     }
 
     function HandleCardDetails(ID) {

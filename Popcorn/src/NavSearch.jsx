@@ -7,17 +7,22 @@ import './App.css';
 function NavSearch({ ApisDataFun }) {
 
     const [SearchData, setSearchData] = useState('');
+    const [warning, setWarning] = useState(false)
+
 
     const search = SearchData ? SearchData : "Movie";
-
+    var dataResponse;
     async function fetchData() {
         try {
             let res = await fetch(`https://www.omdbapi.com/?s=${search}&apikey=64f1b04f`);
             let data = await res.json();
             console.log("Count API = ", data);
+            dataResponse = data.Response;
             /** callback function to send data to its parent */
-            
-            ApisDataFun(data.Search);
+
+            if (data.Response != "False") {
+                ApisDataFun(data.Search);
+            }
         }
         catch (error) {
             console.error('Error fetching data:', error);
@@ -31,8 +36,25 @@ function NavSearch({ ApisDataFun }) {
     /** Assign user input into state variable */
     function handleEvent(e) {
         if (e.key === 'Enter') {
-            ApisDataFun([]);
-            setSearchData(e.target.value);
+
+            let s = (e.target.value).trim();
+
+            if (s.length < 3) {
+                alert("At least three character:");
+                return;
+            }
+            else if (dataResponse == "False" && SearchData != s) {
+                console.log("Gandu:");
+                ApisDataFun([]);
+                setSearchData(s);
+            }
+
+            else {
+
+                alert("Movie not found:");
+                return;
+            }
+
         }
     }
 
@@ -42,4 +64,4 @@ function NavSearch({ ApisDataFun }) {
     );
 }
 
-export default NavSearch
+export default NavSearch;
