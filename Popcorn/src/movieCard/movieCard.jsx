@@ -2,11 +2,11 @@
 import './Allcss.css'
 import React from 'react';
 
-function MovieCard({ movieList }) {
+function MovieCard({ movieList, setPagination, pagination }) {
 
     console.log("movieList = ", movieList);
 
-    if (movieList.length == 0 || movieList =="null") {
+    if (movieList.length == 0 || (movieList.data.length == 0 && movieList.message == "OK")) {
         return <Loader />
     }
 
@@ -20,9 +20,35 @@ function MovieCard({ movieList }) {
         alert(ID);
     }
 
+    if (movieList.message === 'Error') {
+        return (
+            <div className="MovieCard">
+                <h1>{movieList.data}</h1>
+            </div>
+        )
+    }
+
+    function incrementFun() {
+        if (pagination >= 100) {
+            return;
+        }
+        else {
+            setPagination(pagination + 1);
+        }
+    }
+
+    function decrementFun() {
+        if (pagination <= 1) {
+            return;
+        }
+        else {
+            setPagination(pagination - 1);
+        }
+    }
+
     return (
         <div className="MovieCard">
-            {movieList.map((movie, index) => (
+            {movieList.data.map((movie, index) => (
                 <div key={index} className='MovieCard-items' onClick={() => { HandleCardDetails(movie.imdbID) }}>
 
                     <div >
@@ -38,6 +64,16 @@ function MovieCard({ movieList }) {
                     </div>
                 </div>
             ))}
+
+            <div className='pagination'>
+
+                <p className='dec' onClick={decrementFun}> <b>-</b> </p>
+
+                <p>Page No: {pagination}</p>
+
+                <p className='inc' onClick={incrementFun}><b>+</b></p>
+
+            </div>
         </div>
     );
 }

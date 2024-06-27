@@ -1,28 +1,38 @@
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import './App.css';
 
 
 
-function NavSearch({ ApisDataFun }) {
-
-    const [SearchData, setSearchData] = useState('');
-    const [warning, setWarning] = useState(false)
+function NavSearch({ ApisDataFun, pagination }) {
 
 
-    const search = SearchData ? SearchData : "Movie";
-    var dataResponse;
+    let search = "Movie";
+    var Page_no = pagination;
+    console.log("pagination = ", pagination);
+
     async function fetchData() {
         try {
-            let res = await fetch(`https://www.omdbapi.com/?s=${search}&apikey=64f1b04f`);
+            let res = await fetch(`https://www.omdbapi.com/?s=${search}&page=${Page_no}&apikey=64f1b04f`);
             let data = await res.json();
             console.log("Count API = ", data);
-            dataResponse = data.Response;
+
             /** callback function to send data to its parent */
 
             if (data.Response != "False") {
-                ApisDataFun(data.Search);
+                let response = {
+                    "message": 'OK',
+                    'data': data.Search
+                }
+                ApisDataFun(response);
+            } else {
+                let response = {
+                    "message": 'Error',
+                    'data': data.Error
+                }
+                ApisDataFun(response);
             }
+
         }
         catch (error) {
             console.error('Error fetching data:', error);
@@ -31,36 +41,51 @@ function NavSearch({ ApisDataFun }) {
 
     useEffect(() => {
         fetchData();
-    }, [SearchData]);
+    }, [pagination]);
 
     /** Assign user input into state variable */
     function handleEvent(e) {
+        let s = (e.target.value);
         if (e.key === 'Enter') {
 
-            let s = (e.target.value).trim();
-
-            if (s.length < 3) {
+            s = s.trim();
+            if (s.length == 0) {
+                return;
+            }
+            else if (s.length < 3) {
                 alert("At least three character:");
                 return;
             }
-            else if (dataResponse == "False" && SearchData != s) {
-                console.log("Gandu:");
-                ApisDataFun([]);
-                setSearchData(s);
+
+            let response = {
+                "message": 'OK',
+                'data': []
             }
+            search = s;
+            ApisDataFun(response);
+            fetchData()
 
-            else {
-
-                alert("Movie not found:");
-                return;
+        } else if (s.length == 0) {
+            if (search.length == 0) {
+                return
             }
-
+            let response = {
+                "message": 'OK',
+                'data': []
+            }
+            search = 'movie';
+            ApisDataFun(response);
+            fetchData()
         }
+    }
+
+    function saveCurrentData(e) {
+        search = e.target.value
     }
 
     /** Return JSX for UI */
     return (
-        <input type="text" placeholder="Movie Search by Name..." className="NavSearch" onKeyDown={handleEvent} />
+        <input type="text" placeholder="Movie Search by Name..." className="NavSearch" onKeyUp={handleEvent} onKeyDown={saveCurrentData} />
     );
 }
 

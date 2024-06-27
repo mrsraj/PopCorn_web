@@ -3,10 +3,12 @@ import './App.css'
 import NavContainer from './NavBar/NavContainer.jsx';
 import MovieCard from './movieCard/movieCard.jsx'
 
+
 function App() {
 
   const [movieList, setmovieList] = useState([]);
-
+  const[pagination, setPagination] = useState(1);
+  
   function updateMovieList(info) {
     console.log("new info in app file: " , info);
     setmovieList(info);
@@ -14,8 +16,8 @@ function App() {
 
   return (
     <>
-      <NavContainer updateAppMovieList={updateMovieList} />
-      <MovieCard movieList={movieList} />
+      <NavContainer updateAppMovieList={updateMovieList} pagination = {pagination} />
+      <MovieCard movieList={movieList}  setPagination = {setPagination} pagination = {pagination}/>
     </>
   )
 }
