@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.SelecteMovieCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.selected-movie-poster-div {
+    padding: 10px;
+    width: 50%;
+    box-shadow: 0px 0px 5px rgb(12, 12, 12, 0.5);
+}
+
+.selected-movie-details-div {
+    box-shadow: 0px 0px 5px rgb(12, 12, 12, 0.5);
+    text-align: center;
+    padding: 10px;
+    width: 50%;
+}
+
+.movie-poster {
+    width: 100%;
+    height: 100%;
+}
+
+.h2 {
+    box-shadow: 0px 0px 10px rgb(12, 12, 12, 0.5);
+    background-color: aquamarine;
+    border-radius: 10px;
+    padding: 10px;
+}

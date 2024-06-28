@@ -85,7 +85,7 @@ function NavSearch({ ApisDataFun, pagination }) {
 
     /** Return JSX for UI */
     return (
-        <input type="text" placeholder="Movie Search by Name..." className="NavSearch" onKeyUp={handleEvent} onKeyDown={saveCurrentData} />
+        <input type="text" placeholder="Search Movie by Name..." className="NavSearch" onKeyUp={handleEvent} onKeyDown={saveCurrentData} />
     );
 }
 

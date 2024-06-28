@@ -52,7 +52,7 @@ function MovieCard({ movieList, setPagination, pagination }) {
                 <div key={index} className='MovieCard-items' onClick={() => { HandleCardDetails(movie.imdbID) }}>
 
                     <div >
-                        <img className='MovieCard-poster' src={movie.Poster} alt={`${movie.Title} Poster`} />
+                        <img className='MovieCard-poster' src={movie.Poster} alt={`NO,${movie.Title} Poster`} />
                     </div>
 
                     <div className='MovieCard-sort-details'>
