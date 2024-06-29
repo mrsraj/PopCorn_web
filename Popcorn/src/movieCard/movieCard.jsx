@@ -2,7 +2,7 @@
 import './Allcss.css'
 import React from 'react';
 
-function MovieCard({ movieList, setPagination, pagination }) {
+function MovieCard({ movieList, setPagination, pagination, setSelectMovie}) {
 
     console.log("movieList = ", movieList);
 
@@ -16,8 +16,8 @@ function MovieCard({ movieList, setPagination, pagination }) {
         return <div className='movielistloader'><h2>Loading...</h2></div>
     }
 
-    function HandleCardDetails(ID) {
-        alert(ID);
+    function HandleSelectMovie(ID) {
+        setSelectMovie(ID);
     }
 
     if (movieList.message === 'Error') {
@@ -49,7 +49,7 @@ function MovieCard({ movieList, setPagination, pagination }) {
     return (
         <div className="MovieCard">
             {movieList.data.map((movie, index) => (
-                <div key={index} className='MovieCard-items' onClick={() => { HandleCardDetails(movie.imdbID) }}>
+                <div key={index} className='MovieCard-items' onClick={() => { HandleSelectMovie(movie.imdbID) }}>
 
                     <div >
                         <img className='MovieCard-poster' src={movie.Poster} alt={`NO,${movie.Title} Poster`} />
