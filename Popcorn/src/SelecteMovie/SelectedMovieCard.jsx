@@ -25,6 +25,10 @@ function SelecteMovieCard({ selectMovie, handleCancel1 }) {
         handleCancel1(false);
     }
 
+    useEffect(() => {
+        document.title = `${selectMovieData.Type} | ${selectMovieData.Title}`;
+    })
+
     function LoaderComponent() {
         return <div className='selectLoader'><h2 >Loading...</h2></div>
     }
@@ -51,7 +55,8 @@ function SelecteMovieCard({ selectMovie, handleCancel1 }) {
                             <p className='D'>{`Year : ${selectMovieData.Year}`}</p>
                             <p className='D'>{`Released : ${selectMovieData.Released}`}</p>
                             <p className='D'>{`Type : ${selectMovieData.Type}`}</p>
-                            <p className='D'>{`imdbRating : ${selectMovieData.imdbRating} star`}</p>
+                            <p className='D'>{`imdbRating  :⭐ ${selectMovieData.imdbRating} / 10`}</p>
+                            <p className='D'>{`Runtime : ${selectMovieData.Runtime}`}</p>
                             <p className='D'>{`imdbVotes : ${selectMovieData.imdbVotes}`}</p>
                         </div>
 
