@@ -1,7 +1,8 @@
 
 import "./NavAll.css"
 function ResultCount({ApisDataCount}) {
-
+    console.log("ApisDataCount", ApisDataCount);
+    
     
     return (
         <div>

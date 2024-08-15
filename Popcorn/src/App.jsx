@@ -28,7 +28,8 @@ function App() {
         :
         (<>
           <NavContainer updateAppMovieList={updateMovieList} pagination={pagination} />
-          <MovieCard movieList={movieList} setPagination={setPagination} pagination={pagination} setSelectMovie={setSelectMovie} />
+          <MovieCard movieList={movieList} setPagination={setPagination}
+            pagination={pagination} setSelectMovie={setSelectMovie} />
         </>)}
     </>
   )
