@@ -26,8 +26,15 @@ function SelecteMovieCard({ selectMovie, handleCancel1 }) {
     }
 
     useEffect(() => {
+        if (!selectMovieData.Title) return;
         document.title = `${selectMovieData.Type} | ${selectMovieData.Title}`;
-    })
+
+        return function () {
+            document.title = "🍿 POPCORN";
+            console.log(`Clean up effect for movie ${selectMovieData.Title}`);
+        };
+
+    }, [selectMovieData])
 
     function LoaderComponent() {
         return <div className='selectLoader'><h2 >Loading...</h2></div>

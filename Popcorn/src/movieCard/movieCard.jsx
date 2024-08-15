@@ -2,7 +2,7 @@
 import './Allcss.css'
 import React from 'react';
 
-function MovieCard({ movieList, setPagination, pagination, setSelectMovie}) {
+function MovieCard({ movieList, setPagination, pagination, setSelectMovie }) {
 
     console.log("movieList = ", movieList);
 
@@ -47,14 +47,15 @@ function MovieCard({ movieList, setPagination, pagination, setSelectMovie}) {
     }
 
     return (
-        <div className="MovieCard">
+        // Movie Card 
+        <div className="MovieCard" >
             {movieList.data.map((movie, index) => (
                 <div key={index} className='MovieCard-items' onClick={() => { HandleSelectMovie(movie.imdbID) }}>
-
+                    {/* Movie Image */}
                     <div >
-                        <img className='MovieCard-poster' src={movie.Poster} alt={`NO,${movie.Title} Poster`} />
+                        <img className='MovieCard-poster' src={movie.Poster} alt={`NO,${movie.Title} Poster`} loading="lazy" />
                     </div>
-
+                    {/* Movie Details */}
                     <div className='MovieCard-sort-details'>
                         <div>
                             <h3 className='title'> {movie.Title}</h3>
